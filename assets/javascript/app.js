@@ -91,9 +91,9 @@ let game = {
         $('#subwrapper').html('<h2>OUT OF TIME!</h2>');
         $('#subwrapper').append('<h3>The Correct Answer Was: '+question[game.currentQuestion].correctAnswer+'</h3>');
         if(game.currentQuestion==question.length-1){
-            setTimeout(game.results,3*1000);
+            setTimeout(game.results,2*1000);
         } else {
-            setTimeout(game.nextQuestion,3*1000);
+            setTimeout(game.nextQuestion,2*1000);
         }
         
     },
@@ -120,9 +120,9 @@ let game = {
         game.correct++;
         $('#subwrapper').html('<h2>YOU GOT IT RIGHT!</h2>');
         if(game.currentQuestion==question.length-1){
-            setTimeout(game.results,3*1000);
+            setTimeout(game.results,2*1000);
         } else {
-            setTimeout(game.nextQuestion,3*1000);
+            setTimeout(game.nextQuestion,2*1000);
         }
 
     },
