@@ -9,7 +9,7 @@ $(document).on('click','.answer-button',function(e){
 })
 
 
-let questions = [{
+let question = [{
     question: 'What was Michael Jackson/s family band called?',
     answers: ['Michael 5', 'Living Colour', 'Jackson 5', 'Soul Train'],
     correctAnswer: 'Jackson 5',
@@ -57,7 +57,7 @@ function loadQuestion() {
 
 
 let game = {
-    questions:questions,
+    question:question,
     currentQuestion:0,
     counter:30,
     correct:0,
@@ -73,13 +73,10 @@ let game = {
     loadQuestion: function(){
         timer = setInterval(game.countdown,1000);
         $('#subwrapper').html("<h2>TIME REMAINING <span id='counter'> 30 </span> Seconds</h2>");
-        $('#subwrapper').append('<h2>'+questions[game.currentQuestion].
-            questions+'</h2>');
-        for(var i=0;i<questions[game.currentQuestion].answers.length;i++){
-            $('#subwrapper').append
-            ('<button class="answer-button"id="button-'+i+'" data-name="'+questions[game.
-                    currentQuestion].answers[i]+'">'+questions[game.
-                    currentQuestion].answers[i]+'</button>');   
+        $('#subwrapper').append(
+            '<h2>'+ question[game.currentQuestion].question+'</h2>');
+        for(var i=0;i < question[game.currentQuestion].answers.length;i++){
+            $('#subwrapper').append('<button class="answer-button"id="button-'+i+'" data-name="'+question[game.currentQuestion].answers[i]+'">'+question[game.currentQuestion].answers[i]+'</button>');   
         }
     },
     nextQuestion: function(){
@@ -92,9 +89,8 @@ let game = {
     timeUp: function(){
         clearInterval(timer);
         $('#subwrapper').html('<h2>OUT OF TIME!</h2>');
-        $('#subwrapper').append('<h3>The Correct Answer Was: '+questions[game.
-        currentQuestion].correctAnswer+'</h3>');
-        if(game.currentQuestion==questions.length-1){
+        $('#subwrapper').append('<h3>The Correct Answer Was: '+question[game.currentQuestion].correctAnswer+'</h3>');
+        if(game.currentQuestion==question.length-1){
             setTimeout(game.results,3*1000);
         } else {
             setTimeout(game.nextQuestion,3*1000);
@@ -111,7 +107,7 @@ let game = {
     },
     clicked: function(e){
         clearInterval(timer);
-        if($(e.target).data("name")==questions[game.currentQuestion].
+        if($(e.target).data("name")==question[game.currentQuestion].
         correctAnswer){
             game.answeredCorrectly();
         } else {
@@ -135,8 +131,7 @@ let game = {
         clearInterval(timer);
         game.incorrect++;
         $('#subwrapper').html('<h2>YOU GOT IT WRONG!</h2>');
-        $('#subwrapper').append('<h3>The Correct Answer Was: '+questions[game.
-            currentQuestion].correctAnswer+'</h3>');
+        $('#subwrapper').append('<h3>The Correct Answer Was: '+question[game.currentQuestion].correctAnswer+'</h3>');
             if(game.currentQuestion==questions.length-1){
             setTimeout(game.results,3*1000);
         } else {
