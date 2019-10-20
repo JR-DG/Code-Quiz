@@ -59,6 +59,7 @@ function loadQuestion() {
 let game = {
     question:question,
     currentQuestion:0,
+    nextQuestion:0,
     counter:30,
     correct:0,
     incorrect:0,
@@ -73,8 +74,7 @@ let game = {
     loadQuestion: function(){
         timer = setInterval(game.countdown,1000);
         $('#subwrapper').html("<h2>TIME REMAINING <span id='counter'> 30 </span> Seconds</h2>");
-        $('#subwrapper').append(
-            '<h2>'+ question[game.currentQuestion].question+'</h2>');
+        $('#subwrapper').append('<h2>'+ question[game.currentQuestion].question+'</h2>');
         for(var i=0;i < question[game.currentQuestion].answers.length;i++){
             $('#subwrapper').append('<button class="answer-button"id="button-'+i+'" data-name="'+question[game.currentQuestion].answers[i]+'">'+question[game.currentQuestion].answers[i]+'</button>');   
         }
@@ -83,7 +83,7 @@ let game = {
         game.counter = 30;
         $('#counter').html(game.counter);
         game.currentQuestion++;
-        game.loadQuestion();
+        game.loadQuestion(game.nextQuestion);
 
     },
     timeUp: function(){
@@ -119,7 +119,7 @@ let game = {
         clearInterval(timer);
         game.correct++;
         $('#subwrapper').html('<h2>YOU GOT IT RIGHT!</h2>');
-        if(game.currentQuestion==questions.length-1){
+        if(game.currentQuestion==question.length-1){
             setTimeout(game.results,3*1000);
         } else {
             setTimeout(game.nextQuestion,3*1000);
@@ -132,10 +132,10 @@ let game = {
         game.incorrect++;
         $('#subwrapper').html('<h2>YOU GOT IT WRONG!</h2>');
         $('#subwrapper').append('<h3>The Correct Answer Was: '+question[game.currentQuestion].correctAnswer+'</h3>');
-            if(game.currentQuestion==questions.length-1){
-            setTimeout(game.results,3*1000);
+            if(game.currentQuestion==question.length-1){
+            setTimeout(game.results,2*1000);
         } else {
-            setTimeout(game.nextQuestion,3*1000);
+            setTimeout(game.nextQuestion,2*1000);
         }
 
     },
