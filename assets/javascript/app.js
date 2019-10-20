@@ -1,5 +1,5 @@
 $('#start').on('click',function(){
-    $('#start').loadQuestion();
+    $('#start').remove();
     game.loadQuestion();  
 
 })
@@ -7,6 +7,53 @@ $('#start').on('click',function(){
 $(document).on('click','.answer-button',function(e){
     game.clicked(e);
 })
+
+
+let questions = [{
+    question: 'What was Michael Jackson/s family band called?',
+    answers: ['Michael 5', 'Living Colour', 'Jackson 5', 'Soul Train'],
+    correctAnswer: 'Jackson 5',
+    image: 'assets/images/Jackson 5.gif',
+}, {
+    question: 'Who was the first man on the moon?',
+    answers: ['Michael Aldrin', 'Neil Strongford', 'Neil Armstrong', 'Aldrin Armstrong'],
+    correctAnswer: 'Neil Armstrong',
+    image:'assets/images/Neil Armstrong.gif',
+}, {
+    question: 'Which actor was in the movie /Training Day/?',
+    answers: ['Jennifer Lopez', 'Forest Whitaker', 'Mark Wahlberg', 'Denzel Washington'],
+    correctAnswer: 'Denzel Washington',
+    image: 'assets/images/Denzel Washington.gif',
+}, {
+   question: 'Which dance style is considered a latin dance style?',
+   answers: ['Swing', 'Salsa', 'Jitterbug', 'Swing'],
+   correctAnswer: 'Salsa',
+   image: 'assets/images/Salsa Dancing.jpg', 
+}, {
+    question: 'What the world/s first computer programmer a male or female?',
+    answers: ['male', 'female'],
+    correctAnswer: 'female',
+    image: 'assets/images/Ada Lovelace.jpg',
+}, {
+    question: 'Does UBER currently offer helicopter rides?',
+    answers: ['Yes', 'No'],
+    correctAnswer: 'Yes',
+    image: 'assets/images/Uber Helicopter.gif',
+}, {
+    question: 'What is /Bart Simpsons/ dad/s name?',
+    answers: ['Mark Simpson', 'Mike Simpson', 'Steve Simpson', 'Homer Simpson'],
+    correctAnswer: 'Homer Simpson',
+    image: 'assets/images/Homer Simpson.gif',
+}, {
+    question: 'Who is the riches person on earth?',
+    answers: ['Bill Gates', 'Oprah Whinfrey', 'Jeff Bezos', 'Warren Buffet'],
+    correctAnswer: 'Jeff Bezos',
+    image: 'assets/images/Jeff Bezos.gif',
+}];
+
+function loadQuestion() {
+  
+}
 
 
 let game = {
@@ -25,7 +72,7 @@ let game = {
     },
     loadQuestion: function(){
         timer = setInterval(game.countdown,1000);
-        $('#subwrapper').html("<h2>TIME REMAINING<span id='counter'>30</span>Seconds</h2>");
+        $('#subwrapper').html("<h2>TIME REMAINING <span id='counter'> 30 </span> Seconds</h2>");
         $('#subwrapper').append('<h2>'+questions[game.currentQuestion].
             questions+'</h2>');
         for(var i=0;i<questions[game.currentQuestion].answers.length;i++){
